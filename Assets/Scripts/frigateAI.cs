@@ -31,10 +31,13 @@ public class frigateAI : MonoBehaviour {
 
     void FixedUpdate()
     {
-        getPlayerPosition();
+        if (middleReference != null)
+        {
+            getPlayerPosition();
 
-        TurnTowardsPosition(playerPosition.GetComponent<shipControl>().middleReference.transform);
-        AccelerationTowardsPoint(playerPosition.GetComponent<shipControl>().middleReference.transform.position);
+            TurnTowardsPosition(playerPosition.GetComponent<shipControl>().middleReference.transform);
+            AccelerationTowardsPoint(playerPosition.GetComponent<shipControl>().middleReference.transform.position);
+        }
     }
 
     private void TurnTowardsPosition(Transform trans)
@@ -97,7 +100,7 @@ public class frigateAI : MonoBehaviour {
     {
         foreach (EngineComponent engine in shipEngines)
         {
-            if (engine.tag == "thrusterLeft")
+            if (engine.tag == "thrusterLeft" && engine != null)
             {
                 engine.runThrusters(engine.GetComponent<Rigidbody2D>());
             }
@@ -109,7 +112,7 @@ public class frigateAI : MonoBehaviour {
     {
         foreach (EngineComponent engine in shipEngines)
         {
-            if (engine.tag == "thrusterRight")
+            if (engine.tag == "thrusterRight" && engine != null)
             {
                 engine.runThrusters(engine.GetComponent<Rigidbody2D>());
             }

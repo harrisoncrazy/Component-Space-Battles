@@ -17,7 +17,6 @@ public class InstallSlot : MonoBehaviour {
 
     public void InstallJoint()
     {
-
         joint = this.transform.parent.gameObject.AddComponent<FixedJoint2D>();
         joint.connectedBody = connectedComponent.GetComponent<Rigidbody2D>();
         connectedComponent.transform.position = this.transform.position;

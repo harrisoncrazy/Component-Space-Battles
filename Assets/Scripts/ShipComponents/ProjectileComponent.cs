@@ -10,6 +10,7 @@ public class ProjectileComponent : MonoBehaviour
     public float projectileSpeed = 2;
     public float maxVelocity = 3;
     public float damageValue = 2;
+    public string damageType = "base";
 
     private float deletionTimer = 5.0f;
 
@@ -53,7 +54,7 @@ public class ProjectileComponent : MonoBehaviour
         {
             if (other.transform.parent.gameObject != parentShip)
             {
-                other.GetComponent<BaseComponent>().takeDamage(damageValue);
+                other.GetComponent<BaseComponent>().takeDamage(damageValue,damageType);
                 Destroy(this.gameObject);
             }
         }
