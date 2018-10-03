@@ -6,6 +6,8 @@ public class BaseComponent : MonoBehaviour {
 
     public GameObject shipController;
 
+    public bool isBuildMode = false;
+
     public float weight;
     [Range(0, 75.0f)]
     public float armor;
@@ -40,7 +42,7 @@ public class BaseComponent : MonoBehaviour {
             {
                 slot.InstallJoint();
                 
-                if (slot.installType == "turretSlot")
+                if (slot.installType == "turretSlot" && slot.connectedComponent != null)
                 {
                     slot.connectedComponent.GetComponent<TurretComponent>().slotPos = this.transform;
                 }
