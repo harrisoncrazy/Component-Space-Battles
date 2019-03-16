@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 122971478439743311}
   - component: {fileID: 122971478439743312}
   - component: {fileID: 122971478439743310}
-  - component: {fileID: 7116680217953286766}
+  - component: {fileID: 6124443566264756146}
   m_Layer: 0
   m_Name: floatingPart
   m_TagString: Untagged
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSprite: {fileID: 122971478439743312}
---- !u!61 &7116680217953286766
+--- !u!61 &6124443566264756146
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
