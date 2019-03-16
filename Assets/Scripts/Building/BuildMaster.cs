@@ -11,6 +11,16 @@ public class partInfo
     public string imgName;
     public int numConnections;
     public string displayName;
+
+    public List<ConnectionPoints> partConnections;
+}
+
+[Serializable]
+public class ConnectionPoints
+{
+    public string type;
+    public float xPos;
+    public float yPos;
 }
 
 [Serializable]
@@ -67,6 +77,7 @@ public class BuildMaster : MonoBehaviour
                     //Setting the sprite and text on the ui element
                     prefab.GetComponent<partUIElement>().mainImage.sprite = partImages[z].partSprite;
                     prefab.GetComponent<partUIElement>().mainText.text = myPartList.partInfoList[i].displayName;
+                    prefab.GetComponent<partUIElement>().partID = myPartList.partInfoList[i].imgName;
                 }
 
                 //Scaling the viewport/scroll area
@@ -80,5 +91,20 @@ public class BuildMaster : MonoBehaviour
             Vector2 newScale2 = new Vector2(GameObject.Find("ObjectContainer").GetComponent<RectTransform>().sizeDelta.x, scaleY);
             GameObject.Find("ObjectContainer").GetComponent<RectTransform>().sizeDelta = newScale2;
         }
+    }
+
+    public List<ConnectionPoints> returnInstallSlots (string ID)
+    {
+        List<ConnectionPoints> connectionPoints = new List<ConnectionPoints>();
+
+        for (int i = 0; i < myPartList.partInfoList.Count; i++)
+        {
+            if (myPartList.partInfoList[i].imgName == ID)
+            {
+                connectionPoints = myPartList.partInfoList[i].partConnections;
+            }
+        }
+
+        return connectionPoints;
     }
 }

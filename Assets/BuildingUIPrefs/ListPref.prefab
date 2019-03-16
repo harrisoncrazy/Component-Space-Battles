@@ -164,7 +164,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainImage: {fileID: 68089563082858453}
   mainText: {fileID: 1765687442369039558}
+  partID: 
   floatingPartPref: {fileID: 122971478439743313, guid: e8400c8498c008e4ea73e2df478ba329,
+    type: 3}
+  installSlotPref: {fileID: 1657187751584018, guid: f4b88418d069dee44b4bdc45ce6c246f,
     type: 3}
 --- !u!114 &941448214890726964
 MonoBehaviour:

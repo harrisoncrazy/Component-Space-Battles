@@ -2,38 +2,27 @@
   "partInfoList": [
     {
       "imgName": "helm",
-      "numConnections": 1,
-      "displayName": "Front Helm"
+      "displayName": "Front Helm",
+
+      "partConnections": [
+        {
+          "type": "mainBody",
+          "xPos": 0,
+          "yPos": -0.27
+        }
+      ]
     },
     {
       "imgName": "engine",
-      "numConnections": 2,
-      "displayName": "Main Engine"
-    },
-    {
-      "imgName": "engine",
-      "numConnections": 3,
-      "displayName": "Main Engine"
-    },
-    {
-      "imgName": "engine",
-      "numConnections": 4,
-      "displayName": "Main Engine"
-    },
-    {
-      "imgName": "engine",
-      "numConnections": 5,
-      "displayName": "Main Engine"
-    },
-    {
-      "imgName": "engine",
-      "numConnections": 6,
-      "displayName": "Main Engine"
-    },
-    {
-      "imgName": "engine",
-      "numConnections": 7,
-      "displayName": "Main Engine"
+      "displayName": "Main Engine",
+
+      "partConnections": [
+        {
+          "type": "mainBody",
+          "xPos": 0,
+          "yPos": 0.34
+        }
+      ]
     }
   ]
 }
