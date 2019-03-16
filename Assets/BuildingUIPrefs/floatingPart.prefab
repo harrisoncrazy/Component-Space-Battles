@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 122971478439743312}
   - component: {fileID: 122971478439743310}
   - component: {fileID: 6124443566264756146}
+  - component: {fileID: 4871891336327329795}
   m_Layer: 0
   m_Name: floatingPart
   m_TagString: Untagged
@@ -94,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSprite: {fileID: 122971478439743312}
+  installSlots: []
 --- !u!61 &6124443566264756146
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,3 +122,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.46, y: 0.44}
   m_EdgeRadius: 0
+--- !u!50 &4871891336327329795
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122971478439743313}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

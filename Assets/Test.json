@@ -23,6 +23,23 @@
           "yPos": 0.34
         }
       ]
+    },
+    {
+      "imgName": "body",
+      "displayName": "Body Segment",
+
+      "partConnections": [
+        {
+          "type": "mainBody",
+          "xPos": 0,
+          "yPos": 0.35
+        },
+        {
+          "type": "mainBody",
+          "xPos": 0,
+          "yPos": -0.4
+        }
+      ]
     }
   ]
 }

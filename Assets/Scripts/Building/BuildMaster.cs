@@ -47,6 +47,8 @@ public class BuildMaster : MonoBehaviour
 
     [SerializeField] private GameObject uiDisplayPref;
 
+    public InstallSlot selectedSlot;
+
     public void Start()
     {
         //parsing JSON to string, data path
