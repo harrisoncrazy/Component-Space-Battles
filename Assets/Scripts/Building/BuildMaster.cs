@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine;
-
+ 
+/*XXXXXXXXXXX START OF READING PARTS XXXXXXXXXXX*/
 [Serializable]
 public class partInfo
 {
     public string imgName;
-    public int numConnections;
     public string displayName;
 
     public List<ConnectionPoints> partConnections;
@@ -35,6 +35,7 @@ public class imgReference
     public string refName;
     public Sprite partSprite;
 }
+/*XXXXXXXXXXX END OF READING PARTS XXXXXXXXXXX*/
 
 
 public class BuildMaster : MonoBehaviour
@@ -108,5 +109,10 @@ public class BuildMaster : MonoBehaviour
         }
 
         return connectionPoints;
+    }
+
+    public void SaveShiptoJSON()
+    {
+
     }
 }

@@ -119,6 +119,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1288926345812880, guid: 55e8522e79d67584e855fcbd8b484f8d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4830107333325698, guid: 55e8522e79d67584e855fcbd8b484f8d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -291,6 +295,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1254707494038936, guid: 7560d05e4da9ac941855c2c825a7fdba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4480320408222774, guid: 7560d05e4da9ac941855c2c825a7fdba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.4
@@ -350,6 +358,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7560d05e4da9ac941855c2c825a7fdba, type: 3}
+--- !u!1 &564654163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 564654165}
+  - component: {fileID: 564654164}
+  m_Layer: 0
+  m_Name: BuildShip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &564654164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564654163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31b31102a5607b94dbcf4bae8a4d40a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partPrefabs:
+  - prefab: {fileID: 1125246639092156, guid: ea020978227a971469b3aff79e1722db, type: 3}
+    prefabID: helm
+  - prefab: {fileID: 1684071401379784, guid: 92cb799fa924c594eb0aedef9862c078, type: 3}
+    prefabID: engine
+  - prefab: {fileID: 1256890002353106, guid: 736b15634259b3d4baa3576f18e188ff, type: 3}
+    prefabID: body
+  jsonObj: {fileID: 4900000, guid: d79671b62ff3abb4382507e93883cf04, type: 3}
+  myShip:
+    shipInfo: []
+--- !u!4 &564654165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564654163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &649888124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1095515603153844, guid: 55e8522e79d67584e855fcbd8b484f8d,

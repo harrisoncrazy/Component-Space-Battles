@@ -1,0 +1,43 @@
+{
+  "shipInfo": [
+    {
+      "part_ID": "body",
+      "partConnections": [
+        {
+          "type": "",
+          "xPos": 0.0,
+          "yPos": 0.3500000238418579,
+          "connectedTo": "helm_145.23"
+        },
+        {
+          "type": "",
+          "xPos": 0.0,
+          "yPos": -0.3999999761581421,
+          "connectedTo": "engine_191.37"
+        }
+      ]
+    },
+    {
+      "part_ID": "helm",
+      "partConnections": [
+        {
+          "type": "",
+          "xPos": 0.0,
+          "yPos": -0.26999998092651369,
+          "connectedTo": "body_119.64"
+        }
+      ]
+    },
+    {
+      "part_ID": "engine",
+      "partConnections": [
+        {
+          "type": "",
+          "xPos": 0.0,
+          "yPos": 0.3400000333786011,
+          "connectedTo": "body_119.64"
+        }
+      ]
+    }
+  ]
+}

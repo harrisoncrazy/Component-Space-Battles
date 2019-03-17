@@ -88,6 +88,8 @@ public class InstallSlot : MonoBehaviour {
 
             //resetting line renderer and stored object
             buildMode = false;
+            isSelected = false;
+            this.GetComponent<LineRenderer>().enabled = false;
             buildMaster.selectedSlot.GetComponent<InstallSlot>().buildMode = false;
             buildMaster.selectedSlot = null;
         }
@@ -98,9 +100,8 @@ public class InstallSlot : MonoBehaviour {
         if (buildMode)
         {
             this.GetComponent<LineRenderer>().positionCount = 2;
+            buildMaster = GameObject.Find("BuildMaster").GetComponent<BuildMaster>();
         }
-
-        buildMaster = GameObject.Find("BuildMaster").GetComponent<BuildMaster>();
     }
 
     public void Update()
@@ -121,12 +122,6 @@ public class InstallSlot : MonoBehaviour {
                 this.GetComponent<LineRenderer>().enabled = false;
                 GameObject.Find("BuildMaster").GetComponent<BuildMaster>().selectedSlot = null;
             }
-        }
-
-        if (buildMode == false)
-        {
-            isSelected = false;
-            this.GetComponent<LineRenderer>().enabled = false;
         }
     }
 }

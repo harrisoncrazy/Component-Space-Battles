@@ -26,6 +26,8 @@ public class partUIElement : MonoBehaviour
         prefab.transform.SetParent(null);
         prefab.transform.localPosition = new Vector3(0, 0);
         prefab.GetComponent<floatingPart>().mainSprite.sprite = this.mainImage.sprite;
+        prefab.GetComponent<floatingPart>().partID = partID;
+        prefab.name = partID + "_" + Random.Range(0.0f, 420.0f).ToString("F2");
 
         //Instanciating part installslot indicators
         List<ConnectionPoints> connectionPoints = GameObject.Find("BuildMaster").GetComponent<BuildMaster>().returnInstallSlots(partID);

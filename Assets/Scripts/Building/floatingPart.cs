@@ -14,6 +14,8 @@ public class floatingPart : MonoBehaviour
 
     private float timer = 1.0f;
 
+    public string partID;
+
     public void Update()
     {
         //if object hovered, and not following mouse, 1 second delay to pick up
