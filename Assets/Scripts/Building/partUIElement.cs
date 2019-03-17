@@ -23,7 +23,7 @@ public class partUIElement : MonoBehaviour
     {
         //Instanciating floating part
         GameObject prefab = Instantiate(floatingPartPref, transform.position, transform.rotation) as GameObject;
-        prefab.transform.SetParent(GameObject.Find("emptyShip").transform);
+        prefab.transform.SetParent(null);
         prefab.transform.localPosition = new Vector3(0, 0);
         prefab.GetComponent<floatingPart>().mainSprite.sprite = this.mainImage.sprite;
 

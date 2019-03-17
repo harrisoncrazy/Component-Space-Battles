@@ -13,6 +13,8 @@ public class InstallSlot : MonoBehaviour {
 
     public GameObject connectedComponent;
 
+    public BuildMaster buildMaster;
+
     private FixedJoint2D joint;
 
     public bool buildMode = false;
@@ -31,27 +33,63 @@ public class InstallSlot : MonoBehaviour {
     public void OnMouseDown()
     {
         //if this part isnt selected, and no other part is selected
-        if (isSelected == false && GameObject.Find("BuildMaster").GetComponent<BuildMaster>().selectedSlot == null)
+        if (isSelected == false && buildMaster.selectedSlot == null && connectedComponent == null)
         {
             isSelected = true;
             this.GetComponent<LineRenderer>().enabled = true;
-            GameObject.Find("BuildMaster").GetComponent<BuildMaster>().selectedSlot = this;
+            buildMaster.selectedSlot = this;
         }// if there is a selected part
-        else if (isSelected == false && GameObject.Find("BuildMaster").GetComponent<BuildMaster>().selectedSlot != null)
+        else if (isSelected == false && buildMaster.selectedSlot != null && connectedComponent == null)
         {
             //setting connected components
-            this.connectedComponent = GameObject.Find("BuildMaster").GetComponent<BuildMaster>().selectedSlot.transform.parent.gameObject;
-            GameObject.Find("BuildMaster").GetComponent<BuildMaster>().selectedSlot.GetComponent<InstallSlot>().connectedComponent = transform.parent.gameObject;
+            this.connectedComponent = buildMaster.selectedSlot.transform.parent.gameObject;
+            buildMaster.selectedSlot.GetComponent<InstallSlot>().connectedComponent = transform.parent.gameObject;
 
-            //installing joints on this and other object
-            InstallJoint();
-            GameObject.Find("BuildMaster").GetComponent<BuildMaster>().selectedSlot.InstallJoint();
+            //Detecting and grouping parts dynamically
+            //if not already attached to a part 
+            if (transform.parent.transform.parent == null && buildMaster.selectedSlot.transform.parent.transform.parent == null)
+            {
+                //Adding to empty gameobject to manage moving together
+                GameObject emptyObj = new GameObject();
+                emptyObj.name = "partGroup";
+                emptyObj.transform.position = this.transform.position;
+                transform.parent.transform.parent = emptyObj.transform;
+                buildMaster.selectedSlot.transform.parent.transform.parent = emptyObj.transform;
+            }
+            else if (transform.parent.transform.parent != null && buildMaster.selectedSlot.transform.parent.transform.parent != null)//if both objects have more than 2 paired
+            {
+                GameObject objectContainer = this.transform.parent.transform.parent.gameObject;
+                //iterating through list of objects, moving them to other container
+                for (int i = objectContainer.transform.childCount-1; i >= 0; i--)
+                {
+                    Transform child = objectContainer.transform.GetChild(i);
+                    child.transform.position = buildMaster.selectedSlot.transform.parent.transform.parent.transform.position;
+                    child.SetParent(buildMaster.selectedSlot.transform.parent.transform.parent, true);
+                }
+                Destroy(objectContainer);
+            }
+            else if (transform.parent.transform.parent != null) //if connecting more than 2 parts together
+            {
+                buildMaster.selectedSlot.transform.parent.transform.position = this.transform.parent.transform.parent.transform.position;
+                buildMaster.selectedSlot.transform.parent.transform.parent = this.transform.parent.transform.parent;
+            }
+            else if (buildMaster.selectedSlot.transform.parent.transform.parent != null)
+            {
+                this.transform.parent.transform.position = buildMaster.selectedSlot.transform.parent.transform.parent.transform.position;
+                this.transform.parent.transform.parent = buildMaster.selectedSlot.transform.parent.transform.parent;
+            }
+
+            //positioning all parts
+            floatingPart[] allParts = FindObjectsOfType<floatingPart>();
+            foreach (floatingPart part in allParts)
+            {
+                part.getSlots();
+            }
 
             //resetting line renderer and stored object
             buildMode = false;
-            GameObject.Find("BuildMaster").GetComponent<BuildMaster>().selectedSlot.GetComponent<InstallSlot>().buildMode = false;
-            GameObject.Find("BuildMaster").GetComponent<BuildMaster>().selectedSlot = null;
-            
+            buildMaster.selectedSlot.GetComponent<InstallSlot>().buildMode = false;
+            buildMaster.selectedSlot = null;
         }
     }
 
@@ -61,6 +99,8 @@ public class InstallSlot : MonoBehaviour {
         {
             this.GetComponent<LineRenderer>().positionCount = 2;
         }
+
+        buildMaster = GameObject.Find("BuildMaster").GetComponent<BuildMaster>();
     }
 
     public void Update()

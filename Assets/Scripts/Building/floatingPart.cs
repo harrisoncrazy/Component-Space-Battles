@@ -33,14 +33,29 @@ public class floatingPart : MonoBehaviour
 
         if (followingMouse)
         {
-            Vector3 pos = Input.mousePosition;
-            pos.z = transform.position.z - Camera.main.transform.position.z;
-            transform.position = Camera.main.ScreenToWorldPoint(pos);
-
-            //putting object down
-            if (Input.GetMouseButtonDown(0))
+            if (transform.parent == null)//if object is alone
             {
-                followingMouse = false;
+                Vector3 pos = Input.mousePosition;
+                pos.z = transform.position.z - Camera.main.transform.position.z;
+                transform.position = Camera.main.ScreenToWorldPoint(pos);
+
+                //putting object down
+                if (Input.GetMouseButtonDown(0))
+                {
+                    followingMouse = false;
+                }
+            }
+            else
+            {
+                Vector3 pos = Input.mousePosition;
+                pos.z = transform.position.z - Camera.main.transform.position.z;
+                transform.parent.position = Camera.main.ScreenToWorldPoint(pos);
+
+                //putting object down
+                if (Input.GetMouseButtonDown(0))
+                {
+                    followingMouse = false;
+                }
             }
         }
     }
@@ -53,5 +68,18 @@ public class floatingPart : MonoBehaviour
     void OnMouseExit()
     {
         mouseOnObject = false;
+    }
+
+    public InstallSlot[] slots;
+
+    public void getSlots()
+    {
+        //getting all children install slot objects
+        slots = this.transform.GetComponentsInChildren<InstallSlot>();
+
+        foreach (InstallSlot slot in slots)
+        {
+            slot.InstallJoint();
+        }
     }
 }
