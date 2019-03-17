@@ -20,6 +20,10 @@ public class shipControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        componentList = new List<BaseComponent>();
+        shipEngines = new List<EngineComponent>();
+        shipTurrets = new List<TurretComponent>();
+
         getAllComponents();
         getEngines();
         getTurrets();
@@ -29,7 +33,7 @@ public class shipControl : MonoBehaviour
     void Update()
     {
         getInput();
-        middleReference.transform.position = middleComponent.transform.position;
+        //middleReference.transform.position = middleComponent.transform.position;
     }
 
     void FixedUpdate()

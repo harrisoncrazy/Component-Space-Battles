@@ -10,7 +10,7 @@ using UnityEngine;
 public class partShipInfo
 {
     public string part_ID;
-
+    public string part_Name;
     public List<PartConnectionPoints> partConnections;
 }
 
@@ -64,6 +64,7 @@ public class shipSave : MonoBehaviour
 
             //getting part ID
             tempContainer.part_ID = currentPart.partID;
+            tempContainer.part_Name = currentPart.name;
 
             List<PartConnectionPoints> connectPoints = new List<PartConnectionPoints>();
             InstallSlot[] slotsInPart = currentPart.transform.GetComponentsInChildren<InstallSlot>();

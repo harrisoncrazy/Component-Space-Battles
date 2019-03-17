@@ -44,13 +44,25 @@ public class shipGenerate : MonoBehaviour
                 {
                     GameObject shipPart = Instantiate(partPrefabs[x].prefab, transform.position, transform.rotation) as GameObject;
                     shipPart.transform.SetParent(emptyObj.transform);
+                    shipPart.name = myShip.shipInfo[i].part_Name;
                 }
             }
         }
 
         for (int i = 0; i < myShip.shipInfo.Count; i++)
         {
-            
+            GameObject currentPart = GameObject.Find(myShip.shipInfo[i].part_Name);
+
+            for (int x = 0; x < myShip.shipInfo[i].partConnections.Count; x++)
+            {
+                GameObject slot = currentPart.transform.GetChild(x).gameObject;
+                Vector3 pos = new Vector3(myShip.shipInfo[i].partConnections[x].xPos, myShip.shipInfo[i].partConnections[x].yPos);
+                slot.transform.localPosition = pos;
+
+                slot.GetComponent<InstallSlot>().connectedComponent = GameObject.Find(myShip.shipInfo[i].partConnections[x].connectedTo);
+            }
         }
+
+        emptyObj.AddComponent<shipControl>();
     }
 }

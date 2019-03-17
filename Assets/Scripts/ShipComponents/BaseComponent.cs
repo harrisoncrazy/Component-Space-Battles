@@ -17,7 +17,7 @@ public class BaseComponent : MonoBehaviour {
 
     public void Start()
     {
-        getSlots();
+        //getSlots();
         this.GetComponent<Rigidbody2D>().mass = weight;
     }
 
