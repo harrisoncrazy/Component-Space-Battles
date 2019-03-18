@@ -8,7 +8,7 @@
         {
           "type": "mainBody",
           "xPos": 0,
-          "yPos": -0.27
+          "yPos": -0.284
         }
       ]
     },
@@ -20,7 +20,7 @@
         {
           "type": "mainBody",
           "xPos": 0,
-          "yPos": 0.34
+          "yPos": 0.43
         }
       ]
     },
@@ -32,12 +32,56 @@
         {
           "type": "mainBody",
           "xPos": 0,
-          "yPos": 0.35
+          "yPos": 0.416
         },
         {
           "type": "mainBody",
           "xPos": 0,
-          "yPos": -0.4
+          "yPos": -0.311
+        }
+      ]
+    },
+    {
+      "imgName": "bodySides",
+      "displayName": "Body Segment w/ Sides",
+
+      "partConnections": [
+        {
+          "type": "mainBody",
+          "xPos": 0,
+          "yPos": 0.416
+        },
+        {
+          "type": "mainBody",
+          "xPos": 0,
+          "yPos": -0.361
+        },
+        {
+          "type": "mainBody",
+          "xPos": 0.263,
+          "yPos": 0.02
+        },
+        {
+          "type": "mainBody",
+          "xPos": -0.263,
+          "yPos": 0.02
+        }
+      ]
+    },
+    {
+      "imgName": "sideMount",
+      "displayName": "Side Mount",
+
+      "partConnections": [
+        {
+          "type": "mainBody",
+          "xPos": 0.23,
+          "yPos": 0.0
+        },
+        {
+          "type": "mainBody",
+          "xPos": -0.13,
+          "yPos": -0.176
         }
       ]
     }

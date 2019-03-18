@@ -329,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4480320408222774, guid: 7560d05e4da9ac941855c2c825a7fdba, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4480320408222774, guid: 7560d05e4da9ac941855c2c825a7fdba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -394,6 +394,10 @@ MonoBehaviour:
     prefabID: engine
   - prefab: {fileID: 1256890002353106, guid: 736b15634259b3d4baa3576f18e188ff, type: 3}
     prefabID: body
+  - prefab: {fileID: 142700166651804720, guid: 2bb284a23eee6f440974a6b364b604e6, type: 3}
+    prefabID: bodySides
+  - prefab: {fileID: 1978890542963158, guid: 907015abcd6663043a136f4785f17c8a, type: 3}
+    prefabID: sideMount
   jsonObj: {fileID: 4900000, guid: d79671b62ff3abb4382507e93883cf04, type: 3}
   myShip:
     shipInfo: []
@@ -625,7 +629,7 @@ Transform:
   m_Children:
   - {fileID: 2110602163}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1684348765 stripped
 GameObject:

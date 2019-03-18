@@ -45,6 +45,15 @@ public class shipGenerate : MonoBehaviour
                     GameObject shipPart = Instantiate(partPrefabs[x].prefab, transform.position, transform.rotation) as GameObject;
                     shipPart.transform.SetParent(emptyObj.transform);
                     shipPart.name = myShip.shipInfo[i].part_Name;
+
+                    if (myShip.shipInfo[i].isFlippedX == true)
+                    {
+                        shipPart.transform.localScale = new Vector3(shipPart.transform.localScale.x * -1, shipPart.transform.localScale.y);
+                    }
+                    if (myShip.shipInfo[i].isFlippedY == true)
+                    {
+                        shipPart.transform.localScale = new Vector3(shipPart.transform.localScale.x, shipPart.transform.localScale.y * -1);
+                    }
                 }
             }
         }

@@ -15,6 +15,8 @@ public class floatingPart : MonoBehaviour
     private float timer = 1.0f;
 
     public string partID;
+    public bool isFlippedX;
+    public bool isFlippedY;
 
     public void Update()
     {
@@ -46,6 +48,24 @@ public class floatingPart : MonoBehaviour
                 {
                     followingMouse = false;
                 }
+
+                //Flipping object in x
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    Vector3 tempContainer = transform.localScale;
+                    transform.localScale = new Vector3(tempContainer.x * -1, tempContainer.y, tempContainer.z);
+
+                    isFlippedX = !isFlippedX;
+                }
+
+                //Flipping object in y
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    Vector3 tempContainer = transform.localScale;
+                    transform.localScale = new Vector3(tempContainer.x, tempContainer.y*-1, tempContainer.z);
+
+                    isFlippedY = !isFlippedY;
+                }
             }
             else
             {
@@ -57,6 +77,30 @@ public class floatingPart : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     followingMouse = false;
+                }
+
+                //Flipping object in x
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    Vector3 tempContainer = transform.parent.transform.localScale;
+                    transform.parent.transform.localScale = new Vector3(tempContainer.x * -1, tempContainer.y, tempContainer.z);
+
+                    foreach (Transform child in transform.parent.transform)
+                    {
+                        child.GetComponent<floatingPart>().isFlippedX = !child.GetComponent<floatingPart>().isFlippedX;
+                    }
+                }
+
+                //Flipping object in y
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    Vector3 tempContainer = transform.parent.transform.localScale;
+                    transform.parent.transform.localScale = new Vector3(tempContainer.x, tempContainer.y*-1, tempContainer.z);
+
+                    foreach (Transform child in transform.parent.transform)
+                    {
+                        child.GetComponent<floatingPart>().isFlippedY = !child.GetComponent<floatingPart>().isFlippedY;
+                    }
                 }
             }
         }

@@ -27,6 +27,7 @@ public class partUIElement : MonoBehaviour
         prefab.transform.localPosition = new Vector3(0, 0);
         prefab.GetComponent<floatingPart>().mainSprite.sprite = this.mainImage.sprite;
         prefab.GetComponent<floatingPart>().partID = partID;
+        prefab.AddComponent<PolygonCollider2D>().isTrigger = true;
         prefab.name = partID + "_" + Random.Range(0.0f, 420.0f).ToString("F2");
 
         //Instanciating part installslot indicators
@@ -36,6 +37,7 @@ public class partUIElement : MonoBehaviour
         {
             GameObject partPoint = Instantiate(installSlotPref, transform.position, transform.rotation) as GameObject;
             partPoint.transform.SetParent(prefab.transform);
+            partPoint.GetComponent<SpriteRenderer>().sortingOrder = 5;
             partPoint.transform.localPosition = new Vector2(connectionPoints[i].xPos, connectionPoints[i].yPos);
         }
     }

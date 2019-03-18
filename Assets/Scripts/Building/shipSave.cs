@@ -11,6 +11,8 @@ public class partShipInfo
 {
     public string part_ID;
     public string part_Name;
+    public bool isFlippedX;
+    public bool isFlippedY;
     public List<PartConnectionPoints> partConnections;
 }
 
@@ -66,16 +68,31 @@ public class shipSave : MonoBehaviour
             tempContainer.part_ID = currentPart.partID;
             tempContainer.part_Name = currentPart.name;
 
+            //Getting part connections
             List<PartConnectionPoints> connectPoints = new List<PartConnectionPoints>();
             InstallSlot[] slotsInPart = currentPart.transform.GetComponentsInChildren<InstallSlot>();
-
+            
             for (int y = 0; y < slotsInPart.Length; y++)
             {
                 PartConnectionPoints connectionP = new PartConnectionPoints();
-                connectionP.connectedTo = slotsInPart[y].connectedComponent.name;
-                connectionP.xPos = slotsInPart[y].transform.localPosition.x;
-                connectionP.yPos = slotsInPart[y].transform.localPosition.y;
-                connectPoints.Add(connectionP);
+                if (slotsInPart[y].connectedComponent != null)
+                {
+                    connectionP.connectedTo = slotsInPart[y].connectedComponent.name;
+                    connectionP.xPos = slotsInPart[y].transform.localPosition.x;
+                    connectionP.yPos = slotsInPart[y].transform.localPosition.y;
+                    connectPoints.Add(connectionP);
+                }
+            }
+
+            //is the part flipped?
+            if (currentPart.isFlippedX)
+            {
+                tempContainer.isFlippedX = true;
+            }
+
+            if (currentPart.isFlippedY)
+            {
+                tempContainer.isFlippedY = true;
             }
 
             tempContainer.partConnections = connectPoints;

@@ -585,6 +585,10 @@ MonoBehaviour:
     partSprite: {fileID: 21300000, guid: e96ad68a68033ed40b6cc7a3bb6b22b9, type: 3}
   - refName: body
     partSprite: {fileID: 21300016, guid: e96ad68a68033ed40b6cc7a3bb6b22b9, type: 3}
+  - refName: bodySides
+    partSprite: {fileID: 21300016, guid: e96ad68a68033ed40b6cc7a3bb6b22b9, type: 3}
+  - refName: sideMount
+    partSprite: {fileID: 21300006, guid: e96ad68a68033ed40b6cc7a3bb6b22b9, type: 3}
   uiDisplayPref: {fileID: 7244832634158374834, guid: 21c0d7f02b7f46d47842a6f68ad66829,
     type: 3}
   selectedSlot: {fileID: 0}
