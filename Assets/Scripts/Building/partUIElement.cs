@@ -10,6 +10,7 @@ public class partUIElement : MonoBehaviour
     public Image mainImage;
     public Text mainText;
     public string partID;
+    public bool keycodeReq;
 
     [SerializeField] private GameObject floatingPartPref;
     [SerializeField] private GameObject installSlotPref;
@@ -27,6 +28,7 @@ public class partUIElement : MonoBehaviour
         prefab.transform.localPosition = new Vector3(0, 0);
         prefab.GetComponent<floatingPart>().mainSprite.sprite = this.mainImage.sprite;
         prefab.GetComponent<floatingPart>().partID = partID;
+        prefab.GetComponent<floatingPart>().keycodeReq = keycodeReq;
         prefab.AddComponent<PolygonCollider2D>().isTrigger = true;
         prefab.name = partID + "_" + Random.Range(0.0f, 420.0f).ToString("F2");
 
@@ -39,6 +41,7 @@ public class partUIElement : MonoBehaviour
             partPoint.transform.SetParent(prefab.transform);
             partPoint.GetComponent<SpriteRenderer>().sortingOrder = 5;
             partPoint.transform.localPosition = new Vector2(connectionPoints[i].xPos, connectionPoints[i].yPos);
+            partPoint.GetComponent<InstallSlot>().installType = connectionPoints[i].type;
         }
     }
 }

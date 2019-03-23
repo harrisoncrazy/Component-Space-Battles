@@ -38,30 +38,7 @@ public class BaseComponent : MonoBehaviour {
 
         foreach (InstallSlot slot in slots)
         {
-            if (!(slot.installType == "thrusterSlot"))
-            {
-                slot.InstallJoint();
-                
-                if (slot.installType == "turretSlot" && slot.connectedComponent != null)
-                {
-                    slot.connectedComponent.GetComponent<TurretComponent>().slotPos = this.transform;
-                }
-            }
-        }
-
-        //delaying thruster install for proper positioning
-        StartCoroutine(delayedThruster());
-    }
-
-    public IEnumerator delayedThruster()
-    {
-        yield return new WaitForSeconds(0.5f);
-        foreach (InstallSlot slot in slots)
-        {
-            if (slot.installType == "thrusterSlot")
-            {
-                slot.InstallJoint();
-            }
+            slot.InstallJoint();
         }
     }
 

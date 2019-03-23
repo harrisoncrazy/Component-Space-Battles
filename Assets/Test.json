@@ -3,30 +3,53 @@
     {
       "imgName": "helm",
       "displayName": "Front Helm",
+      "keybindReq":  false,
 
       "partConnections": [
         {
           "type": "mainBody",
           "xPos": 0,
           "yPos": -0.284
+        },
+        {
+          "type": "thrusterSlot",
+          "xPos": 0.23,
+          "yPos": 0.0
+        },
+        {
+          "type": "thrusterSlot",
+          "xPos": -0.23,
+          "yPos": 0.0
         }
       ]
     },
     {
       "imgName": "engine",
       "displayName": "Main Engine",
+      "keybindReq": true,
 
       "partConnections": [
         {
           "type": "mainBody",
           "xPos": 0,
           "yPos": 0.43
+        },
+        {
+          "type": "thrusterSlot",
+          "xPos": 0.23,
+          "yPos": 0.0
+        },
+        {
+          "type": "thrusterSlot",
+          "xPos": -0.23,
+          "yPos": 0.0
         }
       ]
     },
     {
       "imgName": "body",
       "displayName": "Body Segment",
+      "keybindReq": false,
 
       "partConnections": [
         {
@@ -44,6 +67,7 @@
     {
       "imgName": "bodySides",
       "displayName": "Body Segment w/ Sides",
+      "keybindReq": false,
 
       "partConnections": [
         {
@@ -71,6 +95,7 @@
     {
       "imgName": "sideMount",
       "displayName": "Side Mount",
+      "keybindReq": false,
 
       "partConnections": [
         {
@@ -82,6 +107,19 @@
           "type": "mainBody",
           "xPos": -0.13,
           "yPos": -0.176
+        }
+      ]
+    },
+    {
+      "imgName": "thruster",
+      "displayName": "Thruster",
+      "keybindReq": true,
+
+      "partConnections": [
+        {
+          "type": "thrusterSlot",
+          "xPos": -0.15,
+          "yPos": 0.0
         }
       ]
     }

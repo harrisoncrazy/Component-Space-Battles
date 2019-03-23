@@ -398,6 +398,8 @@ MonoBehaviour:
     prefabID: bodySides
   - prefab: {fileID: 1978890542963158, guid: 907015abcd6663043a136f4785f17c8a, type: 3}
     prefabID: sideMount
+  - prefab: {fileID: 1546609067805790, guid: 9b44b1023c2d39842aaf78b6af604afc, type: 3}
+    prefabID: thruster
   jsonObj: {fileID: 4900000, guid: d79671b62ff3abb4382507e93883cf04, type: 3}
   myShip:
     shipInfo: []

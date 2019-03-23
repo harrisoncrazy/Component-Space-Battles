@@ -11,6 +11,7 @@ public class partInfo
 {
     public string imgName;
     public string displayName;
+    public bool keybindReq;
 
     public List<ConnectionPoints> partConnections;
 }
@@ -81,6 +82,7 @@ public class BuildMaster : MonoBehaviour
                     prefab.GetComponent<partUIElement>().mainImage.sprite = partImages[z].partSprite;
                     prefab.GetComponent<partUIElement>().mainText.text = myPartList.partInfoList[i].displayName;
                     prefab.GetComponent<partUIElement>().partID = myPartList.partInfoList[i].imgName;
+                    prefab.GetComponent<partUIElement>().keycodeReq = myPartList.partInfoList[i].keybindReq;
                 }
 
                 //Scaling the viewport/scroll area
@@ -109,10 +111,5 @@ public class BuildMaster : MonoBehaviour
         }
 
         return connectionPoints;
-    }
-
-    public void SaveShiptoJSON()
-    {
-
     }
 }

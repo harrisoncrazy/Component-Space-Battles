@@ -10,6 +10,10 @@ public class floatingPart : MonoBehaviour
     private bool followingMouse = true;
     private bool mouseOnObject = true;
 
+    public bool keycodeReq;
+    public KeyCode storedCode;
+    private bool waitingOnKey = false;
+
     public List<GameObject> installSlots;
 
     private float timer = 1.0f;
@@ -35,7 +39,30 @@ public class floatingPart : MonoBehaviour
             timer = 1.0f;
         }
 
-        if (followingMouse)
+        if (waitingOnKey)
+        {
+            foreach (KeyCode vKey in System.Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(vKey))
+                {
+                    storedCode = vKey;
+                    GetComponent<SpriteRenderer>().color = Color.white;
+                    waitingOnKey = false;
+                }
+            }
+        }
+
+        //detecting just mouseclick
+        if (Input.GetMouseButtonDown(1) && mouseOnObject)
+        { 
+            if (keycodeReq)
+            {
+                waitingOnKey = true;
+                GetComponent<SpriteRenderer>().color = Color.red;
+            }
+        }
+
+        if (followingMouse && !waitingOnKey)
         {
             if (transform.parent == null)//if object is alone
             {
@@ -65,6 +92,18 @@ public class floatingPart : MonoBehaviour
                     transform.localScale = new Vector3(tempContainer.x, tempContainer.y*-1, tempContainer.z);
 
                     isFlippedY = !isFlippedY;
+                }
+
+                //Rotating object Left
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    transform.Rotate(Vector3.forward * 15);
+                }
+
+                //Rotating object Right
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    transform.Rotate(Vector3.back * 15);
                 }
             }
             else

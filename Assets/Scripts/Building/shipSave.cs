@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*XXXXXXXXXXX START OF WRITING SHIP XXXXXXXXXXX*/
 [Serializable]
@@ -13,6 +14,8 @@ public class partShipInfo
     public string part_Name;
     public bool isFlippedX;
     public bool isFlippedY;
+    public float zRot;
+    public string keyCode;
     public List<PartConnectionPoints> partConnections;
 }
 
@@ -95,11 +98,16 @@ public class shipSave : MonoBehaviour
                 tempContainer.isFlippedY = true;
             }
 
+            tempContainer.zRot = currentPart.transform.localEulerAngles.z;
+            tempContainer.keyCode = currentPart.storedCode.ToString();
+
             tempContainer.partConnections = connectPoints;
             myPartList.shipInfo.Add(tempContainer);
         }
 
         string JsonText = JsonUtility.ToJson(myPartList);
         File.WriteAllText(Application.dataPath + "/Ship.json", JsonText);
+
+        SceneManager.LoadScene(1);
     }
 }

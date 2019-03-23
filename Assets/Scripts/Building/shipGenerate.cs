@@ -42,7 +42,9 @@ public class shipGenerate : MonoBehaviour
             {
                 if (myShip.shipInfo[i].part_ID == partPrefabs[x].prefabID)
                 {
-                    GameObject shipPart = Instantiate(partPrefabs[x].prefab, transform.position, transform.rotation) as GameObject;
+                    Vector3 newRot = new Vector3(transform.rotation.x, transform.rotation.y, myShip.shipInfo[i].zRot);
+                    GameObject shipPart = Instantiate(partPrefabs[x].prefab, transform.position, Quaternion.identity) as GameObject;
+                    shipPart.transform.localEulerAngles = newRot;
                     shipPart.transform.SetParent(emptyObj.transform);
                     shipPart.name = myShip.shipInfo[i].part_Name;
 
@@ -53,6 +55,12 @@ public class shipGenerate : MonoBehaviour
                     if (myShip.shipInfo[i].isFlippedY == true)
                     {
                         shipPart.transform.localScale = new Vector3(shipPart.transform.localScale.x, shipPart.transform.localScale.y * -1);
+                    }
+
+                    //detecting and setting keycode
+                    if (myShip.shipInfo[i].keyCode != "None")
+                    {
+                        shipPart.GetComponent<EngineComponent>().code = (KeyCode)System.Enum.Parse(typeof(KeyCode), myShip.shipInfo[i].keyCode);
                     }
                 }
             }
