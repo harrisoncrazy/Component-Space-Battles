@@ -17,6 +17,15 @@ public class shipControl : MonoBehaviour
 
     public List<BaseComponent> componentList;
 
+    [SerializeField]
+    private float thrusterImpulseTime = 1.5f;
+    [SerializeField]
+    private float maxThrusterImpulseTime = 1.5f;
+    [SerializeField]
+    private float thrusterDelayTime  = 3.0f;
+    [SerializeField]
+    private float maxThrusterDelayTime = 3.0f;
+
     // Use this for initialization
     void Start()
     {
@@ -33,7 +42,8 @@ public class shipControl : MonoBehaviour
     void Update()
     {
         getInput();
-        //middleReference.transform.position = middleComponent.transform.position;
+        middleReference.transform.position = middleComponent.transform.position;
+        middleReference.transform.rotation = middleComponent.transform.rotation;
     }
 
     void FixedUpdate()
@@ -44,13 +54,34 @@ public class shipControl : MonoBehaviour
 
     private void getInput()
     {
-        foreach(EngineComponent engine in shipEngines)
+        foreach (EngineComponent engine in shipEngines)
         {
-            if (Input.GetKey(engine.code))
+            if (Input.GetKey(engine.primeCode))
             {
-                engine.runThrusters(engine.GetComponent<Rigidbody2D>());
+                engine.runThrusters(engine.GetComponent<Rigidbody2D>(), 0);
+            }
+
+            //alt fire for left/right thrusting, only if time left in thruster time
+            if (Input.GetKey(engine.altCode) && thrusterImpulseTime > 0)
+            {
+                engine.runThrusters(engine.GetComponent<Rigidbody2D>(), 10);
+
+                thrusterImpulseTime -= Time.deltaTime;
             }
         }
+
+        //alt fire is out of time and recharging
+        if (thrusterImpulseTime <= 0)
+        {
+            thrusterDelayTime -= Time.deltaTime;
+
+            if (thrusterDelayTime <= 0) //timer is out, reset the impulse time
+            {
+                thrusterImpulseTime = maxThrusterImpulseTime;
+                thrusterDelayTime = maxThrusterDelayTime;
+            }
+        }
+    
 
         foreach (TurretComponent turret in shipTurrets)
         {
@@ -90,14 +121,24 @@ public class shipControl : MonoBehaviour
     //inertia dampening
     private void InertiaDampining()
     {
-        if (dampenerOn)
+        if (dampenerOn) //Spacebar slowdown
         {
             foreach (BaseComponent comp in componentList)
             {
                 Vector2 oppositeVel = comp.GetComponent<Rigidbody2D>().velocity * -1;
-                comp.GetComponent<Rigidbody2D>().velocity += (oppositeVel / 75);
+                comp.GetComponent<Rigidbody2D>().velocity += (oppositeVel / 25);
                 float oppositeAng = comp.GetComponent<Rigidbody2D>().angularVelocity * -1;
-                comp.GetComponent<Rigidbody2D>().angularVelocity += (oppositeAng / 75);
+                comp.GetComponent<Rigidbody2D>().angularVelocity += (oppositeAng / 25);
+            }
+        } 
+        else //Natural dampening
+        {
+            foreach (BaseComponent comp in componentList)
+            {
+                Vector2 oppositeVel = comp.GetComponent<Rigidbody2D>().velocity * -1;
+                comp.GetComponent<Rigidbody2D>().velocity += (oppositeVel / 100);
+                float oppositeAng = comp.GetComponent<Rigidbody2D>().angularVelocity * -1;
+                comp.GetComponent<Rigidbody2D>().angularVelocity += (oppositeAng / 100);
             }
         }
     }
@@ -131,6 +172,7 @@ public class shipControl : MonoBehaviour
         for (int i = 0; i < turretArray.Length; i++)
         {
             shipTurrets.Add(turretArray[i]);
+            turretArray[i].weight = 0.0000001f;
         }
     }
 }

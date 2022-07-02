@@ -25,24 +25,16 @@ public class TurretComponent : BaseComponent {
     {
         if (slotPos != null)
         {
-            this.transform.position = slotPos.transform.position;
 
-            if (shipController != null && shipController.GetComponent<shipControl>())
-            {
-                //look at camera
-                Vector3 mousePos = Input.mousePosition;
-                mousePos.z = Camera.main.orthographicSize;
-                Vector3 objectPos = Camera.main.WorldToScreenPoint(this.transform.position);
-                mousePos.x = mousePos.x - objectPos.x;
-                mousePos.y = mousePos.y - objectPos.y;
-                float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
-            }
-        }
-        else
-        {
-            this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            this.GetComponent<Rigidbody2D>().simulated = true;
+            this.transform.position = slotPos.transform.position;
+            //look at camera
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.orthographicSize;
+            Vector3 objectPos = Camera.main.WorldToScreenPoint(this.transform.position);
+            mousePos.x = mousePos.x - objectPos.x;
+            mousePos.y = mousePos.y - objectPos.y;
+            float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+            transform.localRotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
         }
     }
 

@@ -60,7 +60,7 @@ public class shipGenerate : MonoBehaviour
                     //detecting and setting keycode
                     if (myShip.shipInfo[i].keyCode != "None")
                     {
-                        shipPart.GetComponent<EngineComponent>().code = (KeyCode)System.Enum.Parse(typeof(KeyCode), myShip.shipInfo[i].keyCode);
+                        shipPart.GetComponent<EngineComponent>().primeCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), myShip.shipInfo[i].keyCode);
                     }
                 }
             }

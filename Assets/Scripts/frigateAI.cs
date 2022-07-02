@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class frigateAI : MonoBehaviour {
 
-    [SerializeField]
-    private GameObject middleReference;
+    public GameObject middleReference;
 
     private bool dampenerOn = false;
     private float maxVelocity = 5.0f;
@@ -42,23 +41,43 @@ public class frigateAI : MonoBehaviour {
 
     private void TurnTowardsPosition(Transform trans)
     {
-        Vector3 dir = trans.position - middleReference.transform.position;
+        Vector3 targetDir = trans.position - transform.position;
+        Vector3 forward = transform.up;
+
+        float angle = Vector3.SignedAngle(targetDir, forward, Vector3.up);
+
+        //Debug.Log(angle);
+
+        float difference = middleReference.transform.eulerAngles.z - angle;
+
+        //Debug.Log(difference);
+
+        if (difference > 15)
+        {
+            fireTurnRightThrusters();
+        } 
+        else if (difference < -15)
+        {
+            fireTurnLeftThrusters();
+        }
+
+        /*
+        Vector3 dir = (trans.position - middleReference.transform.position).normalized;
         dir = trans.InverseTransformDirection(dir);
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         float currentAngle = middleReference.transform.eulerAngles.z;
-        currentAngle -= 270;
 
         if (currentAngle < -180)
         {
             currentAngle += 360;
         }
 
-        //Debug.Log(angle + ", " + currentAngle);
+        Debug.Log(angle + ", " + currentAngle);
 
         float differece = currentAngle - angle;
         angleDiff = differece;
-        //Debug.Log(differece);
+        Debug.Log(differece);
 
         if (differece < 0)
         {
@@ -67,12 +86,12 @@ public class frigateAI : MonoBehaviour {
         else if (differece > 0)
         {
             fireTurnRightThrusters();
-        }
+        } 
 
         if (differece > 45 || differece < -45)
         {
             InertiaDampiningAngularVelocity();
-        }
+        }*/
     }
 
     private void AccelerationTowardsPoint(Vector3 position)
@@ -83,9 +102,9 @@ public class frigateAI : MonoBehaviour {
             {
                 if (engine.tag == "mainEngine")
                 {
-                    if (!(angleDiff > 45) || !(angleDiff < -45))
+                    if (angleDiff < 45 && angleDiff > -45)
                     {
-                        engine.runThrusters(engine.GetComponent<Rigidbody2D>());
+                        engine.runThrusters(engine.GetComponent<Rigidbody2D>(),0);
                     }
                     else
                     {
@@ -102,10 +121,10 @@ public class frigateAI : MonoBehaviour {
         {
             if (engine.tag == "thrusterLeft" && engine != null)
             {
-                engine.runThrusters(engine.GetComponent<Rigidbody2D>());
+                engine.runThrusters(engine.GetComponent<Rigidbody2D>(),0);
             }
         }
-       // Debug.Log("left");
+      Debug.Log("left");
     }
 
     private void fireTurnRightThrusters()
@@ -114,10 +133,10 @@ public class frigateAI : MonoBehaviour {
         {
             if (engine.tag == "thrusterRight" && engine != null)
             {
-                engine.runThrusters(engine.GetComponent<Rigidbody2D>());
+                engine.runThrusters(engine.GetComponent<Rigidbody2D>(),0);
             }
         }
-       //Debug.Log("right");
+       Debug.Log("right");
     }
 
     private void getPlayerPosition()

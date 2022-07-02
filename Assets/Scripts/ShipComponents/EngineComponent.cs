@@ -6,8 +6,10 @@ public class EngineComponent : BaseComponent {
 
     public ThrusterComponent[] thrustPoints;
     public float totalThrustStrength = 2;
+    public GameObject thrustRef;
 
-    public KeyCode code;
+    public KeyCode primeCode;
+    public KeyCode altCode;
 
     public EngineComponent() {}
 
@@ -27,11 +29,11 @@ public class EngineComponent : BaseComponent {
         }
     }
 
-    public void runThrusters(Rigidbody2D rb)
+    public void runThrusters(Rigidbody2D rb, float forceEdit)
     {
         foreach (ThrusterComponent thruster in thrustPoints)
         {
-            thruster.addThrust(rb);
+            thruster.addThrust(rb, forceEdit);
         }
     }
 }

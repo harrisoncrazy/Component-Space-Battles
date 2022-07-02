@@ -7,6 +7,7 @@ public class BaseComponent : MonoBehaviour {
     public GameObject shipController;
 
     public bool isBuildMode = false;
+    public bool isTurret = false;
 
     public float weight;
     [Range(0, 75.0f)]
@@ -17,7 +18,8 @@ public class BaseComponent : MonoBehaviour {
 
     public void Start()
     {
-        //getSlots();
+        getSlots();
+
         this.GetComponent<Rigidbody2D>().mass = weight;
     }
 

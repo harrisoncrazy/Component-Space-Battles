@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrusterComponent : MonoBehaviour {
+public class ThrusterComponent : MonoBehaviour
+{
 
     public float thrustStrength;
+    public bool rightThrust;
 
-    public void addThrust(Rigidbody2D rb)
+    public void addThrust(Rigidbody2D rb, float forceEdit)
     {
-        Vector3 force = transform.up * thrustStrength / 10;
-        Vector3 forcePosition = transform.position;
+        //editing the force for an alt impulse
+        float thrustStrNew = thrustStrength + forceEdit;
+        Vector2 force = transform.up * thrustStrNew / 10;
 
-        rb.AddForceAtPosition(force, forcePosition);
+        rb.AddForce(force);
     }
 }
