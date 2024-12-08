@@ -148,10 +148,10 @@ public class frigateAI : MonoBehaviour {
     {
         foreach (BaseComponent comp in componentList)
         {
-            float x = Mathf.Clamp(comp.GetComponent<Rigidbody2D>().velocity.x, -maxVelocity, maxVelocity);
-            float y = Mathf.Clamp(comp.GetComponent<Rigidbody2D>().velocity.y, -maxVelocity, maxVelocity);
+            float x = Mathf.Clamp(comp.GetComponent<Rigidbody2D>().linearVelocity.x, -maxVelocity, maxVelocity);
+            float y = Mathf.Clamp(comp.GetComponent<Rigidbody2D>().linearVelocity.y, -maxVelocity, maxVelocity);
 
-            comp.GetComponent<Rigidbody2D>().velocity = new Vector2(x, y);
+            comp.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(x, y);
         }
     }
 
@@ -174,8 +174,8 @@ public class frigateAI : MonoBehaviour {
         {
             foreach (BaseComponent comp in componentList)
             {
-                Vector2 oppositeVel = comp.GetComponent<Rigidbody2D>().velocity * -1;
-                comp.GetComponent<Rigidbody2D>().velocity += (oppositeVel / 55);
+                Vector2 oppositeVel = comp.GetComponent<Rigidbody2D>().linearVelocity * -1;
+                comp.GetComponent<Rigidbody2D>().linearVelocity += (oppositeVel / 55);
             }
         }
     }

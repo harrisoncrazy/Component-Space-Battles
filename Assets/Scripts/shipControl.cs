@@ -111,10 +111,10 @@ public class shipControl : MonoBehaviour
     {
         foreach (BaseComponent comp in componentList)
         {
-            float x = Mathf.Clamp(comp.GetComponent<Rigidbody2D>().velocity.x, -maxVelocity, maxVelocity);
-            float y = Mathf.Clamp(comp.GetComponent<Rigidbody2D>().velocity.y, -maxVelocity, maxVelocity);
+            float x = Mathf.Clamp(comp.GetComponent<Rigidbody2D>().linearVelocity.x, -maxVelocity, maxVelocity);
+            float y = Mathf.Clamp(comp.GetComponent<Rigidbody2D>().linearVelocity.y, -maxVelocity, maxVelocity);
 
-            comp.GetComponent<Rigidbody2D>().velocity = new Vector2(x, y);
+            comp.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(x, y);
         }
     }
 
@@ -125,8 +125,8 @@ public class shipControl : MonoBehaviour
         {
             foreach (BaseComponent comp in componentList)
             {
-                Vector2 oppositeVel = comp.GetComponent<Rigidbody2D>().velocity * -1;
-                comp.GetComponent<Rigidbody2D>().velocity += (oppositeVel / 25);
+                Vector2 oppositeVel = comp.GetComponent<Rigidbody2D>().linearVelocity * -1;
+                comp.GetComponent<Rigidbody2D>().linearVelocity += (oppositeVel / 25);
                 float oppositeAng = comp.GetComponent<Rigidbody2D>().angularVelocity * -1;
                 comp.GetComponent<Rigidbody2D>().angularVelocity += (oppositeAng / 25);
             }
@@ -135,8 +135,8 @@ public class shipControl : MonoBehaviour
         {
             foreach (BaseComponent comp in componentList)
             {
-                Vector2 oppositeVel = comp.GetComponent<Rigidbody2D>().velocity * -1;
-                comp.GetComponent<Rigidbody2D>().velocity += (oppositeVel / 100);
+                Vector2 oppositeVel = comp.GetComponent<Rigidbody2D>().linearVelocity * -1;
+                comp.GetComponent<Rigidbody2D>().linearVelocity += (oppositeVel / 100);
                 float oppositeAng = comp.GetComponent<Rigidbody2D>().angularVelocity * -1;
                 comp.GetComponent<Rigidbody2D>().angularVelocity += (oppositeAng / 100);
             }

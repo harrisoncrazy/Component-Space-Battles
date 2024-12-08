@@ -42,10 +42,10 @@ public class ProjectileComponent : MonoBehaviour
 
     public void ClampVelocity()
     {
-        float x = Mathf.Clamp(mainRB.velocity.x, -maxVelocity, maxVelocity);
-        float y = Mathf.Clamp(mainRB.velocity.y, -maxVelocity, maxVelocity);
+        float x = Mathf.Clamp(mainRB.linearVelocity.x, -maxVelocity, maxVelocity);
+        float y = Mathf.Clamp(mainRB.linearVelocity.y, -maxVelocity, maxVelocity);
 
-        mainRB.velocity = new Vector2(x, y);
+        mainRB.linearVelocity = new Vector2(x, y);
     }
 
     void OnTriggerEnter2D(Collider2D other)
